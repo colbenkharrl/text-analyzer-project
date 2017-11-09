@@ -9,3 +9,14 @@
 /MenuPanel.class
 /RecordPanel.class
 /TextAnalyzer.class
+/AppInterface$MenuPanel.class
+/AppInterface$HelpPanel.class
+/AppInterface$HistoryPanel.class
+/AppInterface$RecordPanel.class
+/AppInterface$MainPanel.class
+/AppInterface$MenuButton$ButtonListener.class
+/AppInterface$MenuButton.class
+/AppInterface$ButtonListener.class
+/AppInterface$LoadingPanel.class
+/AppInterface$HistoryPanel$RecordSelectionPanel.class
+/AppInterface$HistoryPanel$StatAggregationPanel.class
