@@ -153,6 +153,47 @@ public class AppInterface extends JFrame {
 		}
 	}
 	
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//I HAVEN'T TRIED TO INTEGRATE THIS INTO YOUR GUI SO NOT SURE ITS 100% RIGHT BUT ITS AN OUTLINE
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+	private class AnalysisPanel extends MainPanel {
+	//temp in file
+		File in = new File(".\\sample3.txt");	//file to be read in
+		private String[] value = Analyzer.Analyze(in);
+		private JLabel one, two, three, four, five, six, seven, eight; 
+		private JPanel shell;
+		private JButton done = new JButton("done");
+		
+		public AnalysisPanel() {
+			shell.setLayout(new GridLayout(9,1));
+			
+			one.setText("File: " + in);
+			two.setText("Line count: " + value[0]);
+			three.setText("Blank line count: " + value[1]);
+			four.setText("Space count: " + value[2]);
+			five.setText("Word count: " + value[3]);
+			six.setText("Average characters per line: " + value[4]);
+			seven.setText("Average characters per word: " + value[5]);
+			eight.setText("Most common words: " + value[6]);
+			
+			shell.add(one);
+			shell.add(two);
+			shell.add(three);
+			shell.add(four);
+			shell.add(five);
+			shell.add(six);
+			shell.add(seven);
+			shell.add(eight);
+			shell.add(done);
+			
+			setLayout(new BoarderLayout());
+			add(new JLabel("File statistics: "), BorderLayout.NORTH);
+			add(shell, BorderLayout.CENTER);
+		}
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	private class RecordPanel extends MainPanel {
 		public RecordPanel() {
 			
