@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -41,6 +42,7 @@ public class AppInterface extends JFrame {
 		MainPanel r;
 		switch(state) {
 		case ANALYZING:
+			//r = new AnalysisPanel();
 			r = new LoadingPanel();
 			break;
 		case MAIN_MENU:
@@ -126,7 +128,45 @@ public class AppInterface extends JFrame {
 		}
 	}
 	
-	
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+	private class AnalysisPanel extends MainPanel {
+	//temp in file
+		File in = new File(".\\Users\\14lou\\Documents\\Workspace\\TextAnalyzer\\src\\sample0.txt");	//file to be read in
+		String[] value = Analyzer.Analyze(in);
+		JLabel one = new JLabel(), two = new JLabel(), three = new JLabel(), four = new JLabel(), five = new JLabel(), six = new JLabel(), seven = new JLabel(), eight = new JLabel();; 
+		private JPanel shell = new JPanel();
+		JButton done = new JButton("done");
+		
+		public AnalysisPanel() {
+			shell.setLayout(new GridLayout(9,1));
+			
+			one.setText("File: " + in);
+			two.setText("Line count: " + value[0]);
+			three.setText("Blank line count: " + value[1]);
+			four.setText("Space count: " + value[2]);
+			five.setText("Word count: " + value[3]);
+			six.setText("Average characters per line: " + value[4]);
+			seven.setText("Average characters per word: " + value[5]);
+			eight.setText("Most common words: " + value[6]);
+			
+			shell.add(one);
+			shell.add(two);
+			shell.add(three);
+			shell.add(four);
+			shell.add(five);
+			shell.add(six);
+			shell.add(seven);
+			shell.add(eight);
+			shell.add(done);
+			
+			add(new JLabel("File statistics: "), BorderLayout.NORTH);
+			add(shell, BorderLayout.CENTER);
+		}
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	private class LoadingPanel extends MainPanel {
 		
 		private MenuButton returnBtn;
@@ -153,47 +193,6 @@ public class AppInterface extends JFrame {
 		}
 	}
 	
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//I HAVEN'T TRIED TO INTEGRATE THIS INTO YOUR GUI SO NOT SURE ITS 100% RIGHT BUT ITS AN OUTLINE
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-	private class AnalysisPanel extends MainPanel {
-	//temp in file
-		File in = new File(".\\sample3.txt");	//file to be read in
-		private String[] value = Analyzer.Analyze(in);
-		private JLabel one, two, three, four, five, six, seven, eight; 
-		private JPanel shell;
-		private JButton done = new JButton("done");
-		
-		public AnalysisPanel() {
-			shell.setLayout(new GridLayout(9,1));
-			
-			one.setText("File: " + in);
-			two.setText("Line count: " + value[0]);
-			three.setText("Blank line count: " + value[1]);
-			four.setText("Space count: " + value[2]);
-			five.setText("Word count: " + value[3]);
-			six.setText("Average characters per line: " + value[4]);
-			seven.setText("Average characters per word: " + value[5]);
-			eight.setText("Most common words: " + value[6]);
-			
-			shell.add(one);
-			shell.add(two);
-			shell.add(three);
-			shell.add(four);
-			shell.add(five);
-			shell.add(six);
-			shell.add(seven);
-			shell.add(eight);
-			shell.add(done);
-			
-			setLayout(new BoarderLayout());
-			add(new JLabel("File statistics: "), BorderLayout.NORTH);
-			add(shell, BorderLayout.CENTER);
-		}
-	}
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	private class RecordPanel extends MainPanel {
 		public RecordPanel() {
 			
@@ -254,7 +253,6 @@ public class AppInterface extends JFrame {
 				add(scroll, BorderLayout.CENTER);
 			}
 		}
-		
 		private class StatAggregationPanel extends JPanel {
 			
 			private Vector<String> stats;
@@ -264,14 +262,14 @@ public class AppInterface extends JFrame {
 				
 				//	stats placeholder
 				stats = new Vector<String>();
-				stats.addElement("Files seen:");
-				stats.addElement("Average lines:");
-				stats.addElement("Average blank lines:");
-				stats.addElement("Average spaces:");
-				stats.addElement("Average words:");
-				stats.addElement("Average characters per line:");
-				stats.addElement("Average word length:");
-				stats.addElement("Common words:");
+				stats.addElement("Files seen: ");
+				stats.addElement("Line count: ");
+				stats.addElement("Blank line count: ");
+				stats.addElement("Space count: ");
+				stats.addElement("Word count: ");
+				stats.addElement("Average characters per line: ");
+				stats.addElement("Average word length: ");
+				stats.addElement("Common words: ");
 				
 				
 				recordJList = new JList<String>(stats);
@@ -281,7 +279,7 @@ public class AppInterface extends JFrame {
 				
 				JScrollPane scroll = new JScrollPane(recordJList);
 				
-				add(new JLabel("Average statistics:"), BorderLayout.NORTH);
+				add(new JLabel("Average statistics: "), BorderLayout.NORTH);
 				add(scroll, BorderLayout.CENTER);
 			}
 		}
@@ -312,6 +310,7 @@ public class AppInterface extends JFrame {
 				break;
 			case ANALYZE:
 				state = State.ANALYZING;
+				//set File in = directory
 				break;
 			case ANALYZE_HELP:
 				break;
