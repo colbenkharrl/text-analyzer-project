@@ -15,11 +15,17 @@ public class AppInterface extends JFrame {
 	public enum State { MAIN_MENU, HELP_MENU, RECORD, HISTORY, ANALYZING }
 		
 	private final int FRAME_WIDTH, FRAME_HEIGHT;
+	private final JFileChooser fc;
+	private File file;
 	private JLabel title;
 	private MainPanel mainP;
 	private State state = State.MAIN_MENU;
+	private String[] vals;
 	
 	public AppInterface() {
+		
+		//	initialize file chooser
+		fc = new JFileChooser();
 		
 		//	set title
 		title = new JLabel("Text Analyzer Pro");
@@ -51,17 +57,27 @@ public class AppInterface extends JFrame {
 		case HELP_MENU:
 			r = new HelpPanel();
 			break;
-		case RECORD:
-			r = new RecordPanel();
-			break;
 		case HISTORY:
 			r = new HistoryPanel();
+			break;
+		case RECORD:
+			r = new RecordPanel();
 			break;
 		default:
 			r = new MenuPanel();
 			break;
 		}
 		return r;
+	}
+	
+	private void updateCenterPanel(State s) {
+		
+		remove(mainP);
+		state = s;
+		mainP = updateCenterPanel();
+		add(mainP, BorderLayout.CENTER);
+		revalidate();
+		repaint();
 	}
 	
 	public class MainPanel extends JPanel {
@@ -81,7 +97,7 @@ public class AppInterface extends JFrame {
 			
 			//	analyze button
 			analyzeBtn = new MenuButton("Analyze");
-			analyzeBtn.addActionListener(new ButtonListener(ButtonTransition.ANALYZE));
+			analyzeBtn.addActionListener(new AnalyzeListener());
 			add(analyzeBtn);
 			
 			//	history button
@@ -94,6 +110,27 @@ public class AppInterface extends JFrame {
 			helpBtn.addActionListener(new ButtonListener(ButtonTransition.HELP_MENU));
 			add(helpBtn);
 			
+		}
+		
+		private class AnalyzeListener implements ActionListener {
+			public void actionPerformed(ActionEvent event) {
+				System.out.println("Choosing file");
+				if (event.getSource() == analyzeBtn) {
+			        int returnVal = fc.showOpenDialog(MenuPanel.this);
+
+			        if (returnVal == JFileChooser.APPROVE_OPTION) {
+			            AppInterface.this.file = fc.getSelectedFile();
+			            //This is where a real application would open the file.
+			            System.out.println("File chosen: " + AppInterface.this.file.getPath());
+			            
+			            //	transition to loading panel
+			            AppInterface.this.updateCenterPanel(State.ANALYZING);
+			            AppInterface.this.updateCenterPanel(State.RECORD);
+			        } else {
+			            System.out.println("Open command cancelled by user.");
+			        }
+			   }
+			}
 		}
 	}
 	
@@ -127,28 +164,58 @@ public class AppInterface extends JFrame {
 			
 		}
 	}
+
+	private class LoadingPanel extends MainPanel {
+		
+		private MenuButton returnBtn;
+		private String[] values;
+		private JLabel text;
+		private JPanel loadingP;
+		
+		public LoadingPanel() {
+			
+			setLayout(new BorderLayout());
+			
+			
+			loadingP = new JPanel();
+			text = new JLabel("Analyzing...");
+			text.setFont(new Font("Verdana", Font.BOLD, 50));
+			text.setHorizontalAlignment(JLabel.CENTER);
+			text.setVerticalAlignment(JLabel.CENTER);
+			loadingP.setLayout(new GridLayout(1, 1));
+			loadingP.setPreferredSize(new Dimension(500, 500));
+			loadingP.add(text);
+			add(loadingP, BorderLayout.CENTER);
+			
+			returnBtn = new MenuButton("Cancel");
+			returnBtn.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
+			returnBtn.setPreferredSize(new Dimension(500, 100));
+			
+			add(returnBtn, BorderLayout.SOUTH);
+			
+			vals = Analyzer.Analyze(AppInterface.this.file);
+		}
+	}
 	
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-	private class AnalysisPanel extends MainPanel {
-	//temp in file
-		File in = new File(".\\Users\\14lou\\Documents\\Workspace\\TextAnalyzer\\src\\sample0.txt");	//file to be read in
-		String[] value = Analyzer.Analyze(in);
-		JLabel one = new JLabel(), two = new JLabel(), three = new JLabel(), four = new JLabel(), five = new JLabel(), six = new JLabel(), seven = new JLabel(), eight = new JLabel();; 
+	private class RecordPanel extends MainPanel {
+		JLabel one = new JLabel(), two = new JLabel(), three = new JLabel(), four = new JLabel(), five = new JLabel(), six = new JLabel(), seven = new JLabel(), eight = new JLabel();
 		private JPanel shell = new JPanel();
 		JButton done = new JButton("done");
 		
-		public AnalysisPanel() {
+		public RecordPanel() {
+			
 			shell.setLayout(new GridLayout(9,1));
 			
-			one.setText("File: " + in);
-			two.setText("Line count: " + value[0]);
-			three.setText("Blank line count: " + value[1]);
-			four.setText("Space count: " + value[2]);
-			five.setText("Word count: " + value[3]);
-			six.setText("Average characters per line: " + value[4]);
-			seven.setText("Average characters per word: " + value[5]);
-			eight.setText("Most common words: " + value[6]);
+			one.setText("File: " + AppInterface.this.file.getPath());
+			two.setText("Line count: " + vals[0]);
+			three.setText("Blank line count: " + vals[1]);
+			four.setText("Space count: " + vals[2]);
+			five.setText("Word count: " + vals[3]);
+			six.setText("Average characters per line: " + vals[4]);
+			seven.setText("Average characters per word: " + vals[5]);
+			eight.setText("Most common words: " + vals[6]);
+			
+			done.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
 			
 			shell.add(one);
 			shell.add(two);
@@ -162,41 +229,6 @@ public class AppInterface extends JFrame {
 			
 			add(new JLabel("File statistics: "), BorderLayout.NORTH);
 			add(shell, BorderLayout.CENTER);
-		}
-	}
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	private class LoadingPanel extends MainPanel {
-		
-		private MenuButton returnBtn;
-		
-		public LoadingPanel() {
-			
-			setLayout(new BorderLayout());
-			
-			
-			JPanel loadingP = new JPanel();
-			JLabel text = new JLabel("Analyzing...");
-			text.setFont(new Font("Verdana", Font.BOLD, 50));
-			text.setHorizontalAlignment(JLabel.CENTER);
-			text.setVerticalAlignment(JLabel.CENTER);
-			loadingP.setLayout(new GridLayout(1, 1));
-			loadingP.setPreferredSize(new Dimension(500, 500));
-			loadingP.add(text);
-			add(loadingP, BorderLayout.CENTER);
-			
-			returnBtn = new MenuButton("Cancel");
-			returnBtn.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
-			returnBtn.setPreferredSize(new Dimension(500, 100));
-			add(returnBtn, BorderLayout.SOUTH);
-		}
-	}
-	
-	private class RecordPanel extends MainPanel {
-		public RecordPanel() {
-			
-			
 		}
 	}
 	
