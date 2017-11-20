@@ -1,0 +1,5 @@
+
+public class Record {
+	private String fileName, lineCount, blankLineCount, spaceCount, wordCount, averageCharLine, averageCharWord;
+	private String[] commonWords;
+}

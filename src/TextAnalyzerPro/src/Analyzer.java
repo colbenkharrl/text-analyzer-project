@@ -11,13 +11,14 @@ import java.util.regex.*;
 	
 public class Analyzer 
 {
-	public static String[] Analyze(File in)								
+	public static Record Analyze(File in)								
 	{
 		//FORWARD DECLARATIONS/VARIABLES
+		Record r;
 		int lineCnt = 0, blanklineCnt = 0, spaceCnt = 0, wordCnt = 0, charCnt = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0;;
 		HashMap<String, Integer> stringOccurences = new HashMap<String, Integer>();
-		String line, temp, w1 = null, w2 = null, w3 = null, w4 = null;
-		String[] values = new String[10], words = null;
+		String line, temp, ACL, ACW, w1 = null, w2 = null, w3 = null, w4 = null;
+		String[] values = new String[4], words = null;
 		
 		//READ FILE CONTENTS/COUNT VALUES
 	    try
@@ -60,19 +61,14 @@ public class Analyzer
 	    	e.printStackTrace();
 	    } catch (IOException e) {e.printStackTrace();}
 	    
-	    //CREATE RETURN STRUCTURE/CALCULATE FINAL VALUES
-	    values[0] = Integer.toString(lineCnt);
-	    values[1] = Integer.toString(blanklineCnt);
-	    values[2] = Integer.toString(spaceCnt);
-	    values[3] = Integer.toString(wordCnt);
 	    if (lineCnt != 0)
-	    	values[4] = Integer.toString((int)((double) charCnt)/lineCnt);
+	    	ACL = Integer.toString((int)((double) charCnt)/lineCnt);
 	    else
-	    	values[4] = "";
+	    	ACL = "";
 	    if (wordCnt != 0)	
-	    	values[5] = Integer.toString((int)((double) charCnt)/wordCnt);
+	    	ACW = Integer.toString((int)((double) charCnt)/wordCnt);
 	    else
-	    	values[5] = "";
+	    	ACW = "";
 	    
         Set<Entry<String, Integer>> text = stringOccurences.entrySet();
         for (Entry<String, Integer> string : text)
@@ -120,12 +116,16 @@ public class Analyzer
             }
         }
 	    
-	    values[6] = w1;
-	    values[7] = w2;
-	    values[8] = w3;
-	    values[9] = w4;
+	    values[0] = w1;
+	    values[1] = w2;
+	    values[2] = w3;
+	    values[3] = w4;
+	    
+	    //	initialize record
+	    
+	    r = new Record(in.getPath(), Integer.toString(lineCnt), Integer.toString(blanklineCnt), Integer.toString(spaceCnt), Integer.toString(wordCnt), ACL, ACW, values);
 	    
 	    //RETURN STRING[] CONTAINING VALUES
-		return values;	
+		return r;	
 	}
 }

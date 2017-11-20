@@ -20,7 +20,7 @@ public class AppInterface extends JFrame {
 	private JLabel title;
 	private MainPanel mainP;
 	private State state = State.MAIN_MENU;
-	private String[] vals;
+	private Record latest;
 	
 	public AppInterface() {
 		
@@ -193,7 +193,7 @@ public class AppInterface extends JFrame {
 			
 			add(returnBtn, BorderLayout.SOUTH);
 			
-			vals = Analyzer.Analyze(AppInterface.this.file);
+			latest = Analyzer.Analyze(AppInterface.this.file);
 		}
 	}
 	
@@ -206,14 +206,14 @@ public class AppInterface extends JFrame {
 			
 			shell.setLayout(new GridLayout(9,1));
 			
-			one.setText("File: " + AppInterface.this.file.getPath());
-			two.setText("Line count: " + vals[0]);
-			three.setText("Blank line count: " + vals[1]);
-			four.setText("Space count: " + vals[2]);
-			five.setText("Word count: " + vals[3]);
-			six.setText("Average characters per line: " + vals[4]);
-			seven.setText("Average characters per word: " + vals[5]);
-			eight.setText("Most common words: " + vals[6]);
+			one.setText("File: " + latest.getFileName());
+			two.setText("Line count: " + latest.getLineCount());
+			three.setText("Blank line count: " + latest.getBlankLineCount());
+			four.setText("Space count: " + latest.getSpaceCount());
+			five.setText("Word count: " + latest.getWordCount());
+			six.setText("Average characters per line: " + latest.getAverageCharLine());
+			seven.setText("Average characters per word: " + latest.getAverageCharWord());
+			eight.setText("Most common words: " + latest.getCommonWordsString());
 			
 			done.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
 			

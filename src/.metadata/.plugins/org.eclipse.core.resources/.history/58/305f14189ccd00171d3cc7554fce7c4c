@@ -1,0 +1,16 @@
+
+public class Record {
+	private String fileName, lineCount, blankLineCount, spaceCount, wordCount, averageCharLine, averageCharWord;
+	private String[] commonWords;
+	
+	public Record(String f, String l, String bl, String s, String w, String cl, String cw, String[] ws) {
+		fileName = f;
+		lineCount = l;
+		blankLineCount = bl;
+		spaceCount = s;
+		wordCount = w;
+		averageCharLine = cl;
+		averageCharWord = cw;
+		commonWords = ws;
+	}
+}
