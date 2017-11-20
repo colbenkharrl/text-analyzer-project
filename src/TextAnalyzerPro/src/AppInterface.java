@@ -16,16 +16,20 @@ public class AppInterface extends JFrame {
 		
 	private final int FRAME_WIDTH, FRAME_HEIGHT;
 	private final JFileChooser fc;
+	private final String SAVE_FILE = "src/Records.txt";
 	private File file;
 	private JLabel title;
 	private MainPanel mainP;
 	private State state = State.MAIN_MENU;
+	private RecordList records;
 	private Record latest;
 	
 	public AppInterface() {
 		
 		//	initialize file chooser
 		fc = new JFileChooser();
+		
+		records = new RecordList(SAVE_FILE);
 		
 		//	set title
 		title = new JLabel("Text Analyzer Pro");
@@ -194,6 +198,9 @@ public class AppInterface extends JFrame {
 			add(returnBtn, BorderLayout.SOUTH);
 			
 			latest = Analyzer.Analyze(AppInterface.this.file);
+			
+			records.addRecord(latest);
+			records.writeFile();	
 		}
 	}
 	
@@ -234,10 +241,10 @@ public class AppInterface extends JFrame {
 	
 	private class HistoryPanel extends MainPanel {
 		
-		private JList<String> recordJList;
+		private JList<Record> recordJList;
+		private JList<String> statsList;
 		private JPanel midPanel, btnPanel;
 		private MenuButton deleteHistory, menu;
-		private Vector<String> recordList;
 		
 		public HistoryPanel() {
 			
@@ -247,19 +254,11 @@ public class AppInterface extends JFrame {
 			btnPanel = new JPanel(new GridLayout(1, 2));
 			btnPanel.setPreferredSize(new Dimension(600, 100));
 			
-			//	record placeholder
-			recordList = new Vector<String>();
-			recordList.addElement("record one");
-			recordList.addElement("record two");
-			recordList.addElement("record three");
-			recordList.addElement("record four");
-			recordList.addElement("record five");
-			
 			deleteHistory = new MenuButton("Delete History");
 			menu = new MenuButton("Return to Main Menu");
 			menu.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
 			
-			midPanel.add(new RecordSelectionPanel(recordList));
+			midPanel.add(new RecordSelectionPanel(records.records));
 			midPanel.add(new StatAggregationPanel());
 			
 			btnPanel.add(deleteHistory);
@@ -271,10 +270,10 @@ public class AppInterface extends JFrame {
 		
 		private class RecordSelectionPanel extends JPanel {
 			
-			public RecordSelectionPanel(Vector<String> v) {
+			public RecordSelectionPanel(Vector<Record> v) {
 				setLayout(new BorderLayout());
 				
-				recordJList = new JList<String>(v);
+				recordJList = new JList<Record>(v);
 				recordJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				recordJList.setLayoutOrientation(JList.VERTICAL);
 				recordJList.setVisibleRowCount(-1);
@@ -304,12 +303,12 @@ public class AppInterface extends JFrame {
 				stats.addElement("Common words: ");
 				
 				
-				recordJList = new JList<String>(stats);
-				recordJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				recordJList.setLayoutOrientation(JList.VERTICAL);
-				recordJList.setVisibleRowCount(-1);
+				statsList = new JList<String>(stats);
+				statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				statsList.setLayoutOrientation(JList.VERTICAL);
+				statsList.setVisibleRowCount(-1);
 				
-				JScrollPane scroll = new JScrollPane(recordJList);
+				JScrollPane scroll = new JScrollPane(statsList);
 				
 				add(new JLabel("Average statistics: "), BorderLayout.NORTH);
 				add(scroll, BorderLayout.CENTER);

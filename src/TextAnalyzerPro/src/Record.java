@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public class Record {
+public class Record implements Serializable {
+	
 	private String fileName, lineCount, blankLineCount, spaceCount, wordCount, averageCharLine, averageCharWord;
 	private String[] commonWords;
 	
@@ -55,5 +57,9 @@ public class Record {
 			}
 		}
 		return res;
+	}
+	
+	public String toString() {
+		return fileName;
 	}
 }

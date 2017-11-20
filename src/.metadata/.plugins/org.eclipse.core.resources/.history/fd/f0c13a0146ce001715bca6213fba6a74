@@ -1,0 +1,77 @@
+import java.io.*;
+import java.net.URL;
+import java.util.*;
+
+public class RecordList {
+	
+	private ArrayList<Record> records;
+	private String file;
+	
+	public RecordList(String fileName) {
+		
+		URL url = RecordList.class.getClassLoader().getResource(fileName);
+		
+		file = fileName;
+		records = new ArrayList<Record>();
+		parseFile(file);
+	}
+	
+	private void parseFile(String fileName) {
+		
+		InputStream fileIs = null;
+        ObjectInputStream objIs = null;
+        Record r;
+        try {
+            fileIs = new FileInputStream(fileName);
+            objIs = new ObjectInputStream(fileIs);
+            
+            try {
+            	for (;;) {
+            		r = (Record) objIs.readObject();
+            		addRecord(r);
+            	}
+            } catch (EOFException e) {
+            	objIs.close();
+            }
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+        } finally {
+            try {
+                if(objIs != null) objIs.close();
+            } catch (Exception ex){
+                 
+            }
+        }
+	}
+	
+	public void addRecord(Record r) {
+		
+		records.add(r);
+		
+		OutputStream ops = null;
+        ObjectOutputStream objOps = null;
+        try {
+            ops = new FileOutputStream(file, true);
+            objOps = new ObjectOutputStream(ops);
+            objOps.writeObject(r);
+            
+            System.out.println("object written");
+            
+            objOps.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            try{
+                objOps.close();
+            } catch (Exception ex){
+                 
+            }
+        }
+	}
+}
