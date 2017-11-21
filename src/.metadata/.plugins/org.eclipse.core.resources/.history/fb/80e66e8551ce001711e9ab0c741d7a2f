@@ -16,7 +16,7 @@ public class AppInterface extends JFrame {
 		
 	private final int FRAME_WIDTH, FRAME_HEIGHT;
 	private final JFileChooser fc;
-	private final String SAVE_FILE = "src/Files/Records.txt";
+	private final String SAVE_FILE = "src/Records.txt";
 	private File file;
 	private JLabel title;
 	private MainPanel mainP;

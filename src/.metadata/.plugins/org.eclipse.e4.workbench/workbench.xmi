@@ -177,17 +177,15 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_hCcizc3TEeeDc4H4v57_ZQ" elementId="org.eclipse.ui.editorss" selectedElement="_hCcizs3TEeeDc4H4v57_ZQ">
-      <children xsi:type="basic:PartStack" xmi:id="_hCcizs3TEeeDc4H4v57_ZQ" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_hCciz83TEeeDc4H4v57_ZQ">
+      <children xsi:type="basic:PartStack" xmi:id="_hCcizs3TEeeDc4H4v57_ZQ" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_hCci2c3TEeeDc4H4v57_ZQ">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_hCciz83TEeeDc4H4v57_ZQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="TextAnalyzer.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;TextAnalyzer.java&quot; partName=&quot;TextAnalyzer.java&quot; title=&quot;TextAnalyzer.java&quot; tooltip=&quot;TextAnalyzerPro/src/TextAnalyzer.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TextAnalyzerPro/src/TextAnalyzer.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;267&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;TextAnalyzer.java&quot; partName=&quot;TextAnalyzer.java&quot; title=&quot;TextAnalyzer.java&quot; tooltip=&quot;TextAnalyzerPro/src/TextAnalyzer.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TextAnalyzerPro/src/TextAnalyzer.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;274&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_hCci0M3TEeeDc4H4v57_ZQ" elementId="#CompilationUnitEditorContext">
             <tags>menuContribution:popup</tags>
             <tags>popup:#CompilationUnitEditorContext</tags>
@@ -238,10 +236,12 @@
           </menus>
         </children>
         <children xsi:type="basic:Part" xmi:id="_hCci2c3TEeeDc4H4v57_ZQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="AppInterface.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;AppInterface.java&quot; partName=&quot;AppInterface.java&quot; title=&quot;AppInterface.java&quot; tooltip=&quot;TextAnalyzerPro/src/AppInterface.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TextAnalyzerPro/src/AppInterface.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;5091&quot; selectionTopPixel=&quot;2460&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;AppInterface.java&quot; partName=&quot;AppInterface.java&quot; title=&quot;AppInterface.java&quot; tooltip=&quot;TextAnalyzerPro/src/AppInterface.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TextAnalyzerPro/src/AppInterface.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;526&quot; selectionTopPixel=&quot;1260&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_hCci2s3TEeeDc4H4v57_ZQ" elementId="#CompilationUnitEditorContext">
             <tags>menuContribution:popup</tags>
             <tags>popup:#CompilationUnitEditorContext</tags>
@@ -590,7 +590,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hCcjo83TEeeDc4H4v57_ZQ" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_tp0DgM5IEee0iLYEIZwDWw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_hCctMc3TEeeDc4H4v57_ZQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_aRhqF85REeeUEqgZRI7RyA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_hCctMc3TEeeDc4H4v57_ZQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hCcjsM3TEeeDc4H4v57_ZQ" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -611,7 +611,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hCckEM3TEeeDc4H4v57_ZQ" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_tp0Dis5IEee0iLYEIZwDWw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_hCcs5M3TEeeDc4H4v57_ZQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_aRq0BM5REeeUEqgZRI7RyA" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_hCcs5M3TEeeDc4H4v57_ZQ"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hCckG83TEeeDc4H4v57_ZQ" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
