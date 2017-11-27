@@ -287,9 +287,11 @@ public class AppInterface extends JFrame {
 
         private class StatAggregationPanel extends JPanel {
 
+            private Vector<String> stats;
+
             public StatAggregationPanel() {
                 setLayout(new BorderLayout());
-                statsList = new JList<String>(Analyzer.getAverageStats(records.records));
+                statsList = new JList<String>(stats);
                 statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 statsList.setLayoutOrientation(JList.VERTICAL);
                 statsList.setVisibleRowCount(-1);
