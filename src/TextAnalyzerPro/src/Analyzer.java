@@ -122,11 +122,116 @@ public class Analyzer
 		return r;	
 	}
 	
-	public static Vector<String> getAverageStats(Vector<Record> records) {
-		Vector<String> ret = new Vector<String>();
+	public static Record getAverageStats(Vector<Record> records) {
 		
-		//	TODO build average stats
+HashMap<String, Integer> commonWords = new HashMap<String, Integer>();
+		String[] values = new String[4], words = {""}; 
+		int lc = 0, blc = 0, sc = 0, wc = 0, acl = 0, acw = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0;
+		String slc, sblc, ssc, swc, sacl, sacw, w1 = null, w2 = null, w3 = null, w4 = null;
+		int i = 0;
 		
+		for(Record r : records) {
+			//line count
+			lc += Integer.parseInt(r.getLineCount());
+			//blank line count
+			blc += Integer.parseInt(r.getBlankLineCount());
+			//space count
+			sc += Integer.parseInt(r.getSpaceCount());
+			//word count
+			wc += Integer.parseInt(r.getWordCount());
+			//average char per line
+			acl += Integer.parseInt(r.getAverageCharLine());
+			//average char per word
+			acw += Integer.parseInt(r.getAverageCharWord());
+			//most common words
+			words = r.getCommonWords();
+			for (String word : words)
+        	{
+        		if (commonWords.containsKey(word))
+        			commonWords.put(word, commonWords.get(word)+1);	
+        		else if(!word.equals(""))
+        			commonWords.put(word, 1);									
+        	}
+			i++;
+		}
+		if (lc != 0)
+	    	slc = Integer.toString((int)((double) lc)/i);
+	    else
+	    	slc = "";
+		if (blc != 0)
+	    	sblc = Integer.toString((int)((double) blc)/i);
+	    else
+	    	sblc = "";
+		if (sc != 0)
+	    	ssc = Integer.toString((int)((double) sc)/i);
+	    else
+	    	ssc = "";
+		if (wc != 0)
+	    	swc = Integer.toString((int)((double) wc)/i);
+	    else
+	    	swc = "";
+		if (acl != 0)
+	    	sacl = Integer.toString((int)((double) acl)/i);
+	    else
+	    	sacl = "";
+		if (acw != 0)
+	    	sacw = Integer.toString((int)((double) acw)/i);
+	    else
+	    	sacw = "";
+		Set<Entry<String, Integer>> text = commonWords.entrySet();
+        for (Entry<String, Integer> string : text)
+        {
+            if (string.getValue() > c1)
+            {
+            	w4 = w3;
+            	c4 = c3; 
+            	w3 = w2;
+            	c3 = c2;
+            	w2 = w1;
+            	c2 = c1;
+                w1 = string.getKey();
+                c1 = string.getValue();
+            }
+            else
+            {
+            	if (string.getValue() > c2)
+                {
+                	w4 = w3;
+                	c4 = c3; 
+                	w3 = w2;
+                	c3 = c2;
+                	w2 = string.getKey();
+                	c2 = string.getValue();
+                }
+            	else
+                {
+                	if (string.getValue() > c3)
+                    {
+                    	w4 = w3;
+                    	c4 = c3; 
+                    	w3 = string.getKey();
+                    	c3 = string.getValue();
+                    }
+                	else
+                    {
+                    	if (string.getValue() > c4)
+                        {
+                        	w4 = string.getKey();
+                        	c4 = string.getValue();
+                        }
+                    }
+                }
+            }
+        }
+	    
+	    values[0] = w1;
+	    values[1] = w2;
+	    values[2] = w3;
+	    values[3] = w4;
+	    
+		Record ret = new Record("", slc, sblc, ssc, swc, sacl, sacw, values);
+	    
 		return ret;
 	}
+}
 }
