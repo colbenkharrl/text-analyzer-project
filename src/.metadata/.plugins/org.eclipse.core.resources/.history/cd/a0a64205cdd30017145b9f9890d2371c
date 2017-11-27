@@ -1,16 +1,16 @@
-History:
+Analysis:
 
-The statistics from each file analyzed will be recorded in the 
-app history. Choose the "View History" option from the main menu
-in order to browse your record history.
+Upon choosing "Analyze" from the menu, a window will appear
+prompting you to select a file from your file system to be 
+analyzed.
 
-Your records are displayed by the full path to the file analyzed at
-the time of analysis. You can choose a file from the list by double-
-clicking on it to view the statistics.
+Navigate your directories to locate the file that you intend to
+process, and choose "Open".
 
-You can also view calculated averages from all files in your records.
-These aggregated statistics are viewable below the record list on the
-history screen.
+You can cancel at any time, and will be returned to the main menu.
+
+After selecting the file to be analyzed, the application will process 
+your file and output the files statistics.
 
 This will include the following:
 
@@ -24,7 +24,7 @@ This will include the following:
 	used in the file.
 
 -	Word count: a count of the number of words in the file. A word
-	is a string of letters or numbers delimited by one or 
+	is a string of letters or numbers deliminated by one or 
 	more whitespace characters.
 
 -	Average characters per line: average character count per line, 

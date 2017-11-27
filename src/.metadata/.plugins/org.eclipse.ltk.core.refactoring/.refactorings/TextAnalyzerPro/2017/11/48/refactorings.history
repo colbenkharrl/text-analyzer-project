@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 6 elements from project &apos;TextAnalyzerPro&apos;&#x0A;- Original project: &apos;TextAnalyzerPro&apos;&#x0A;- Original elements:&#x0A;     ClassDiagram.png&#x0A;     ClassDiagram.ucls&#x0A;     Other.png&#x0A;     Other.ucls&#x0A;     SimpleClassDiagram.png&#x0A;     SimpleClassDiagram.ucls" description="Delete elements" element1="src/ClassDiagram.ucls" element2="src/SimpleClassDiagram.png" element3="src/SimpleClassDiagram.ucls" element4="src/ClassDiagram.png" element5="src/Other.png" element6="src/Other.ucls" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="6" stamp="1511826227861" subPackages="false" version="1.0"/>
+</session>

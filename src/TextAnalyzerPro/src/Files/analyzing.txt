@@ -24,7 +24,7 @@ This will include the following:
 	used in the file.
 
 -	Word count: a count of the number of words in the file. A word
-	is a string of letters or numbers deliminated by one or 
+	is a string of letters or numbers delimited by one or 
 	more whitespace characters.
 
 -	Average characters per line: average character count per line, 
