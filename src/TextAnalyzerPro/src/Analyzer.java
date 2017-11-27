@@ -11,7 +11,7 @@ import java.util.regex.*;
 	
 public class Analyzer 
 {
-	public static Record Analyze(File in)								
+	public static Record Analyze(File in) throws Exception								
 	{
 		//FORWARD DECLARATIONS/VARIABLES
 		Record r;
@@ -21,45 +21,38 @@ public class Analyzer
 		String[] values = new String[4], words = null;
 		
 		//READ FILE CONTENTS/COUNT VALUES
-	    try
-	    {
-	        BufferedReader br = new BufferedReader(new FileReader(in));
+		BufferedReader br = new BufferedReader(new FileReader(in));
 
-	        while ((line = br.readLine()) != null)
-	        {
-	        	lineCnt++;															//Increments Line Count
-	        	
-	        	temp = line.replaceAll("[\\s]", "");									//(removes whitespace)
-	        	if (temp.equals(""))
-	        		blanklineCnt++;													//Increments Blank Line Count
-	        	
-	        	temp = line.replaceAll("[^ ]", "");										//(only [_] characters)
-	        	spaceCnt += temp.length();											//Increments Space Count
-	        	
-	        	temp = line.toLowerCase().replaceAll("[^a-z\\s\\d]", "");				//(whitespace, letters & numbers)
-	        	if (!Pattern.matches("[\\s]", temp) && !temp.isEmpty())									//(ignores blank lines)
-	        	{
-	        		words = line.split("\\s+");
-	        		wordCnt += words.length;										//Increments Word Count
-	        	}
-	        	
-	        	temp = temp.replaceAll("[\\s]", "");									//(letters & numbers)
-	        	charCnt += temp.length();											//Increment Character Count
-	        	
-	        	for (String word : words)
-	        	{
-	        		if (stringOccurences.containsKey(word))
-	        			stringOccurences.put(word, stringOccurences.get(word)+1);	//Increments Occurence count for word
-	        		else
-	        			stringOccurences.put(word, 1);									//places a new word in the HashMap
-	        	}
-	        }
-	        br.close();
-	    }
-	    catch (FileNotFoundException e) 
-	    {
-	    	e.printStackTrace();
-	    } catch (IOException e) {e.printStackTrace();}
+        while ((line = br.readLine()) != null)
+        {
+        	lineCnt++;															//Increments Line Count
+        	
+        	temp = line.replaceAll("[\\s]", "");									//(removes whitespace)
+        	if (temp.equals(""))
+        		blanklineCnt++;													//Increments Blank Line Count
+        	
+        	temp = line.replaceAll("[^ ]", "");										//(only [_] characters)
+        	spaceCnt += temp.length();											//Increments Space Count
+        	
+        	temp = line.toLowerCase().replaceAll("[^a-z\\s\\d]", "");				//(whitespace, letters & numbers)
+        	if (!Pattern.matches("[\\s]", temp) && !temp.isEmpty())									//(ignores blank lines)
+        	{
+        		words = line.split("\\s+");
+        		wordCnt += words.length;										//Increments Word Count
+        	}
+        	
+        	temp = temp.replaceAll("[\\s]", "");									//(letters & numbers)
+        	charCnt += temp.length();											//Increment Character Count
+        	
+        	for (String word : words)
+        	{
+        		if (stringOccurences.containsKey(word))
+        			stringOccurences.put(word, stringOccurences.get(word)+1);	//Increments Occurence count for word
+        		else
+        			stringOccurences.put(word, 1);									//places a new word in the HashMap
+        	}
+        }
+        br.close();
 	    
 	    if (lineCnt != 0)
 	    	ACL = Integer.toString((int)((double) charCnt)/lineCnt);

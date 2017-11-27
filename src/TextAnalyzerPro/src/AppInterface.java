@@ -7,14 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
 
-enum ButtonTransition {
-    MAIN_MENU, HELP_MENU, HELP_TEXT_MENU, ANALYZE, RECORD, HISTORY_MENU, ANALYZE_HELP, HISTORY_HELP, ABOUT
-}
-
 public class AppInterface extends JFrame {
 
     private enum State {MAIN_MENU, HELP_MENU, HELP_TEXT_MENU, RECORD, HISTORY, ANALYZING}
     private enum HelpType {ABOUT, ANALYZE, HISTORY}
+    private enum ButtonTransition {
+        MAIN_MENU, HELP_MENU, HELP_TEXT_MENU, ANALYZE, RECORD, HISTORY_MENU, ANALYZE_HELP, HISTORY_HELP, ABOUT
+    }
 
     private final int FRAME_WIDTH, FRAME_HEIGHT;
     private final JFileChooser fc;
@@ -39,18 +38,14 @@ public class AppInterface extends JFrame {
         mainP = updateCenterPanel();
         add(mainP, BorderLayout.CENTER);
         //	app frame dimensions
-        FRAME_WIDTH = 600;
-        FRAME_HEIGHT = 800;
+        FRAME_WIDTH = 550;
+        FRAME_HEIGHT = 600;
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }
 
     private JPanel updateCenterPanel() {
         JPanel r;
         switch (state) {
-            case ANALYZING:
-                //r = new AnalysisPanel();
-                r = new LoadingPanel();
-                break;
             case MAIN_MENU:
                 r = new MenuPanel();
                 break;
@@ -120,8 +115,14 @@ public class AppInterface extends JFrame {
                         //This is where a real application would open the file.
                         System.out.println("File chosen: " + AppInterface.this.file.getPath());
                         //	transition to loading panel
-                        AppInterface.this.updateCenterPanel(State.ANALYZING);
-                        AppInterface.this.updateCenterPanel(State.RECORD);
+                        try {
+                        	records.addRecord(Analyzer.Analyze(AppInterface.this.file));
+                            records.writeFile();
+                            AppInterface.this.updateCenterPanel(State.RECORD);
+                        } catch (Exception e) {
+                        	System.out.println("Exception caught in app interface");      
+                        	JOptionPane.showMessageDialog(AppInterface.this, "An error occured, aborting analysis.");
+                        }
                     } else {
                         System.out.println("Open command cancelled by user.");
                     }
@@ -155,39 +156,12 @@ public class AppInterface extends JFrame {
         }
     }
 
-    private class LoadingPanel extends JPanel {
-
-        private MenuButton returnBtn;
-        private String[] values;
-        private JLabel text;
-        private JPanel loadingP;
-
-        public LoadingPanel() {
-            setLayout(new BorderLayout());
-            loadingP = new JPanel();
-            text = new JLabel("Analyzing...");
-            text.setFont(new Font("Verdana", Font.BOLD, 50));
-            text.setHorizontalAlignment(JLabel.CENTER);
-            text.setVerticalAlignment(JLabel.CENTER);
-            loadingP.setLayout(new GridLayout(1, 1));
-            loadingP.setPreferredSize(new Dimension(500, 500));
-            loadingP.add(text);
-            add(loadingP, BorderLayout.CENTER);
-            returnBtn = new MenuButton("Cancel");
-            returnBtn.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
-            returnBtn.setPreferredSize(new Dimension(500, 100));
-            add(returnBtn, BorderLayout.SOUTH);
-            records.addRecord(Analyzer.Analyze(AppInterface.this.file));
-            records.writeFile();
-        }
-    }
-
     private class RecordPanel extends JPanel {
-        MenuButton done;
-        Record record;
-        String stats;
-        JScrollPane scroll;
-        JTextArea text;
+        private MenuButton done;
+        private Record record;
+        private String stats;
+        private JScrollPane scroll;
+        private JTextArea text;
 
         public RecordPanel(Record r) {
         	record = r;
@@ -300,7 +274,7 @@ public class AppInterface extends JFrame {
         }
     }
 
-    public class MenuButton extends JButton {
+    private class MenuButton extends JButton {
 
         public MenuButton(String label) {
             setText(label);
@@ -311,7 +285,7 @@ public class AppInterface extends JFrame {
     //	Listener for grid buttons
     private class ButtonListener implements ActionListener {
 
-        ButtonTransition transition;
+    	private ButtonTransition transition;
 
         public ButtonListener(ButtonTransition t) {
             transition = t;
@@ -361,9 +335,9 @@ public class AppInterface extends JFrame {
 
 
     private class TextPanel extends JPanel {
-        MenuButton done;
-        JTextArea data;
-        JScrollPane scroll;
+    	private MenuButton done;
+    	private JTextArea data;
+    	private JScrollPane scroll;
 
         public TextPanel() {
             //	set up grid layout

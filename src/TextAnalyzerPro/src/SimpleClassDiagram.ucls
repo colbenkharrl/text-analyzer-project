@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="false" router="FAN">  
+  <class id="1" language="java" name="AppInterface.MenuPanel.AnalyzeListener" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="215" x="124" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="AppInterface.RecordPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="209" width="146" x="1636" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="AppInterface.HelpPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="185" x="1822" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="AppInterface.HistoryPanel.StatAggregationPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="174" x="379" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="AppInterface" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="317" width="207" x="1134" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="6" language="java" name="AppInterface.HelpType" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="140" x="989" y="306"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="7" language="java" name="AppInterface.ButtonListener" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="215" x="1381" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="AppInterface.MenuButton" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="132" x="2047" y="306"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="AppInterface.HistoryPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="171" x="2047" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="10" language="java" name="ButtonTransition" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="227" width="233" x="1381" y="306"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="11" language="java" name="AppInterface.LoadingPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="148" x="2258" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="AppInterface.HistoryPanel.Deleter" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="215" x="593" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="AppInterface.TextPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="127" x="2446" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="14" language="java" name="AppInterface.State" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="172" x="1169" y="306"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="15" language="java" name="AppInterface.HistoryPanel.RecordSelectionPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="246" x="848" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="AppInterface.MenuPanel" project="TextAnalyzerPro" 
+    file="/TextAnalyzerPro/src/AppInterface.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="159" x="2613" y="-51"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="false" protected="false" private="true" static="true"/>      
+      <operations public="true" package="false" protected="false" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="false" protected="false" private="true" static="true"/>    
+    <operations public="true" package="false" protected="false" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="false" multiplicity="false"/>
+</class-diagram>
