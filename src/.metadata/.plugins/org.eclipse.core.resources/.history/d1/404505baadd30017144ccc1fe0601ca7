@@ -205,14 +205,12 @@ public class AppInterface extends JFrame {
         	setLayout(new BorderLayout());
         	
         	text = new JTextArea(stats + buildStats());
-        	text.setEditable(false);
         	scroll = new JScrollPane(text);
         	
         	done = new MenuButton("Done");
-        	done.setPreferredSize(new Dimension(500, 100));
             
-        	add(scroll, BorderLayout.CENTER);
-            add(done, BorderLayout.SOUTH);
+        	add()
+            add(done);
         }
         
         private String buildStats() {
@@ -416,7 +414,6 @@ public class AppInterface extends JFrame {
                 }
             }
             data = new JTextArea(sb.toString());
-            data.setEditable(false);
             
             scroll = new JScrollPane(data);
             

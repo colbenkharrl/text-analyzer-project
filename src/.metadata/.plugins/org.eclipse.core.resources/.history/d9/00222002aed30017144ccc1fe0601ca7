@@ -209,7 +209,6 @@ public class AppInterface extends JFrame {
         	scroll = new JScrollPane(text);
         	
         	done = new MenuButton("Done");
-        	done.setPreferredSize(new Dimension(500, 100));
             
         	add(scroll, BorderLayout.CENTER);
             add(done, BorderLayout.SOUTH);

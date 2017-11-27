@@ -204,15 +204,17 @@ public class AppInterface extends JFrame {
         	
         	setLayout(new BorderLayout());
         	
-        	text = new JTextArea(stats + buildStats());
-        	text.setEditable(false);
-        	scroll = new JScrollPane(text);
-        	
         	done = new MenuButton("Done");
-        	done.setPreferredSize(new Dimension(500, 100));
             
-        	add(scroll, BorderLayout.CENTER);
-            add(done, BorderLayout.SOUTH);
+        	add(new JLabel());
+        	add(new JLabel("Line count: " + record.getLineCount()));
+        	add(new JLabel());
+        	add(new JLabel());
+        	add(new JLabel());
+        	add(new JLabel());
+        	add(new JLabel());
+        	add(new JLabel());
+            add(done);
         }
         
         private String buildStats() {
@@ -223,7 +225,8 @@ public class AppInterface extends JFrame {
         			"Word count: " + record.getWordCount() + "\n\n" +
         			"Average characters per line: " + record.getAverageCharLine() + "\n\n" +
         			"Average characters per word: " + record.getAverageCharWord() + "\n\n" + 
-        			"Most common words: " + record.getCommonWordsString();			
+        			"Most common words: " + record.getCommonWordsString();
+        			
         }
     }
 
@@ -416,7 +419,6 @@ public class AppInterface extends JFrame {
                 }
             }
             data = new JTextArea(sb.toString());
-            data.setEditable(false);
             
             scroll = new JScrollPane(data);
             

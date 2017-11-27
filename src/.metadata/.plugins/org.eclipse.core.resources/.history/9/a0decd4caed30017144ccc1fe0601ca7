@@ -132,7 +132,7 @@ public class Analyzer
 	public static Vector<String> getAverageStats(Vector<Record> records) {
 		Vector<String> ret = new Vector<String>();
 		
-		//	TODO build average stats
+		//	TODO
 		
 		return ret;
 	}

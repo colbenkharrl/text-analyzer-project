@@ -202,28 +202,18 @@ public class AppInterface extends JFrame {
         
         private void createRecord() {
         	
-        	setLayout(new BorderLayout());
-        	
-        	text = new JTextArea(stats + buildStats());
-        	text.setEditable(false);
-        	scroll = new JScrollPane(text);
-        	
         	done = new MenuButton("Done");
-        	done.setPreferredSize(new Dimension(500, 100));
-            
-        	add(scroll, BorderLayout.CENTER);
-            add(done, BorderLayout.SOUTH);
-        }
-        
-        private String buildStats() {
-        	return 	"File: " + record.getFileName() + "\n\n" +
-        			"Line count: " + record.getLineCount() + "\n\n" + 
-        			"Blank line count: " + record.getBlankLineCount() + "\n\n" + 
-        			"Space count: " + record.getSpaceCount() + "\n\n" + 
-        			"Word count: " + record.getWordCount() + "\n\n" +
-        			"Average characters per line: " + record.getAverageCharLine() + "\n\n" +
-        			"Average characters per word: " + record.getAverageCharWord() + "\n\n" + 
-        			"Most common words: " + record.getCommonWordsString();			
+        	
+            setLayout(new BorderLayout());
+        	add(new JLabel("File: " + record.getFileName()));
+        	add(new JLabel("Line count: " + record.getLineCount()));
+        	add(new JLabel("Blank line count: " + record.getBlankLineCount()));
+        	add(new JLabel("Space count: " + record.getSpaceCount()));
+        	add(new JLabel("Word count: " + record.getWordCount()));
+        	add(new JLabel("Average characters per line: " + record.getAverageCharLine()));
+        	add(new JLabel("Average characters per word: " + record.getAverageCharWord()));
+        	add(new JLabel("Most common words: " + record.getCommonWordsString()));
+            add(done);
         }
     }
 
@@ -416,7 +406,6 @@ public class AppInterface extends JFrame {
                 }
             }
             data = new JTextArea(sb.toString());
-            data.setEditable(false);
             
             scroll = new JScrollPane(data);
             
