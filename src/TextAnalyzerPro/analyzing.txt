@@ -1,1 +1,22 @@
-This is analyzing!
+Analysis:
+After selecting the text file to be analyzed, the application 
+will output the files statistics in the current window.
+
+This will include the following
+-Line count: a count of the number of lines of text, and
+	whitespace in the file.
+-Blank line count: a count of the number of lines that contain 
+	only whitespace.
+-Space count: a count of the number of space characters, " ", 
+	used in the file.
+-Word count: a count of the number of words in the file. A word
+	is a string of letters or numbers deliminated by one or 
+	more whitespace characters.
+-Average characters per line: average character count per line, 
+	determined by Character count divided by Line count 
+	rounded to an integer.
+-Average characters per word: average character count per word, 
+	determined by Character count divided by Word count 
+	rounded to an integer.
+-Most common words: reports the four most commonly used words 
+	in the text file.
