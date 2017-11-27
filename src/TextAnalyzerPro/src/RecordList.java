@@ -49,6 +49,11 @@ public class RecordList {
 		records.add(r);
 	}
 	
+	public void empty() {
+		records.removeAllElements();
+		writeFile();
+	}
+	
 	public void writeFile() {
 		OutputStream ops = null;
         ObjectOutputStream objOps = null;

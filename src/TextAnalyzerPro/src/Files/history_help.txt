@@ -1,0 +1,39 @@
+History:
+
+The statistics from each file analyzed will be recorded in the 
+app history. Choose the "View History" option from the main menu
+in order to browse your record history.
+
+Your records are displayed by the full path to the file analyzed at
+the time of analysis. You can choose a file from the list to view 
+the statistics.
+
+You can also view calculated averages from all files in your records.
+These aggregated statistics are viewable below the record list on the
+history screen.
+
+This will include the following:
+
+-	Line count: a count of the number of lines of text, and
+	whitespace in the file.
+
+-	Blank line count: a count of the number of lines that contain 
+	only whitespace.
+
+-	Space count: a count of the number of space characters, " ", 
+	used in the file.
+
+-	Word count: a count of the number of words in the file. A word
+	is a string of letters or numbers deliminated by one or 
+	more whitespace characters.
+
+-	Average characters per line: average character count per line, 
+	determined by Character count divided by Line count 
+	rounded to an integer.
+
+-	Average characters per word: average character count per word, 
+	determined by Character count divided by Word count 
+	rounded to an integer.
+
+-	Most common words: reports the four most commonly used words 
+	in the text file.

@@ -14,7 +14,8 @@ enum ButtonTransition {
 
 public class AppInterface extends JFrame {
 
-    public enum State {MAIN_MENU, HELP_MENU, HELP_TEXT_MENU, RECORD, HISTORY, ANALYZING}
+    private enum State {MAIN_MENU, HELP_MENU, HELP_TEXT_MENU, RECORD, HISTORY, ANALYZING}
+    private enum HelpType {ABOUT, ANALYZE, HISTORY}
 
     private final int FRAME_WIDTH, FRAME_HEIGHT;
     private final JFileChooser fc;
@@ -23,9 +24,8 @@ public class AppInterface extends JFrame {
     private JLabel title;
     private MainPanel mainP;
     private State state = State.MAIN_MENU;
+    private HelpType help;
     private RecordList records;
-    private Record latest;
-    int tType;
 
     public AppInterface() {
         //	initialize file chooser
@@ -59,7 +59,7 @@ public class AppInterface extends JFrame {
                 r = new HelpPanel();
                 break;
             case HELP_TEXT_MENU:
-                r = new TextPanel(tType);
+                r = new TextPanel();
                 break;
             case HISTORY:
                 r = new HistoryPanel();
@@ -176,8 +176,7 @@ public class AppInterface extends JFrame {
             returnBtn.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
             returnBtn.setPreferredSize(new Dimension(500, 100));
             add(returnBtn, BorderLayout.SOUTH);
-            latest = Analyzer.Analyze(AppInterface.this.file);
-            records.addRecord(latest);
+            records.addRecord(Analyzer.Analyze(AppInterface.this.file));
             records.writeFile();
         }
     }
@@ -188,15 +187,18 @@ public class AppInterface extends JFrame {
         JButton done = new JButton("done");
 
         public RecordPanel() {
+        	
+        	Record r = records.records.get(0);
+        	
             shell.setLayout(new GridLayout(9, 1));
-            one.setText("File: " + latest.getFileName());
-            two.setText("Line count: " + latest.getLineCount());
-            three.setText("Blank line count: " + latest.getBlankLineCount());
-            four.setText("Space count: " + latest.getSpaceCount());
-            five.setText("Word count: " + latest.getWordCount());
-            six.setText("Average characters per line: " + latest.getAverageCharLine());
-            seven.setText("Average characters per word: " + latest.getAverageCharWord());
-            eight.setText("Most common words: " + latest.getCommonWordsString());
+            one.setText("File: " + r.getFileName());
+            two.setText("Line count: " + r.getLineCount());
+            three.setText("Blank line count: " + r.getBlankLineCount());
+            four.setText("Space count: " + r.getSpaceCount());
+            five.setText("Word count: " + r.getWordCount());
+            six.setText("Average characters per line: " + r.getAverageCharLine());
+            seven.setText("Average characters per word: " + r.getAverageCharWord());
+            eight.setText("Most common words: " + r.getCommonWordsString());
             done.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
             shell.add(one);
             shell.add(two);
@@ -225,6 +227,7 @@ public class AppInterface extends JFrame {
             btnPanel = new JPanel(new GridLayout(1, 2));
             btnPanel.setPreferredSize(new Dimension(600, 100));
             deleteHistory = new MenuButton("Delete History");
+            deleteHistory.addActionListener(new Deleter());
             menu = new MenuButton("Return to Main Menu");
             menu.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
             midPanel.add(new RecordSelectionPanel(records.records));
@@ -233,6 +236,14 @@ public class AppInterface extends JFrame {
             btnPanel.add(menu);
             add(midPanel, BorderLayout.CENTER);
             add(btnPanel, BorderLayout.SOUTH);
+        }
+        
+        private class Deleter implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				records.empty();
+				revalidate();
+				repaint();
+			}
         }
 
         private class RecordSelectionPanel extends JPanel {
@@ -298,7 +309,7 @@ public class AppInterface extends JFrame {
             remove(mainP);
             switch (transition) {
                 case ABOUT:
-                    tType = 0;
+                    help = HelpType.ABOUT;
                     state = State.HELP_TEXT_MENU;
                     break;
             
@@ -307,14 +318,14 @@ public class AppInterface extends JFrame {
                     //set File in = directory
                     break;
                 case ANALYZE_HELP:
-                    tType = 1;
+                    help = HelpType.ANALYZE;
                     state = State.HELP_TEXT_MENU;
                     break;
                 case HELP_MENU:
                     state = State.HELP_MENU;
                     break;
                 case HISTORY_HELP:
-                    tType = 2;
+                    help = HelpType.HISTORY;
                     state = State.HELP_TEXT_MENU;
                     break;
                 case HISTORY_MENU:
@@ -338,21 +349,22 @@ public class AppInterface extends JFrame {
 
     private class TextPanel extends MainPanel {
         MenuButton done;
-        JLabel data;
+        JTextArea data;
+        JScrollPane scroll;
 
-        public TextPanel(  int type) {
+        public TextPanel() {
             //	set up grid layout
             String file = "";
             setLayout(new BorderLayout());
-            switch (type) {
-                case 1://analyzing
-                    file = "analyzing.txt";
+            switch (help) {
+                case ANALYZE://analyzing
+                    file = "src/Files/analyzing.txt";
                     break;
-                case 0://about
-                    file = "about.txt";
+                case ABOUT://about
+                    file = "src/Files/about.txt";
                     break;
-                case 2://hh
-                    file = "history_help.txt";
+                case HISTORY://hh
+                    file = "src/Files/history_help.txt";
                     break;
             }
             BufferedReader br = null;
@@ -364,6 +376,7 @@ public class AppInterface extends JFrame {
                 String sCurrentLine;
                 while ((sCurrentLine = br.readLine()) != null) {
                     sb.append(sCurrentLine);
+                    sb.append("\n");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -377,13 +390,16 @@ public class AppInterface extends JFrame {
                     ex.printStackTrace();
                 }
             }
-            data = new JLabel(sb.toString());
-            System.out.println(sb.toString());
+            data = new JTextArea(sb.toString());
+            
+            scroll = new JScrollPane(data);
+            
             done = new MenuButton("Return to menu");
-            done.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
+            done.addActionListener(new ButtonListener(ButtonTransition.HELP_MENU));
+            done.setPreferredSize(new Dimension(500, 100));
 
             done.setFont(new Font("Verdana", Font.BOLD, 20));
-            add(data, BorderLayout.CENTER);
+            add(scroll, BorderLayout.CENTER);
             add(done, BorderLayout.SOUTH);
         }
     }
