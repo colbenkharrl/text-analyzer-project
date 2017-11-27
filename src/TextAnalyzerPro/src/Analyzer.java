@@ -18,7 +18,7 @@ public class Analyzer
 		int lineCnt = 0, blanklineCnt = 0, spaceCnt = 0, wordCnt = 0, charCnt = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0;;
 		HashMap<String, Integer> stringOccurences = new HashMap<String, Integer>();
 		String line, temp, ACL, ACW, w1 = null, w2 = null, w3 = null, w4 = null;
-		String[] values = new String[4], words = null;
+		String[] values = new String[4], words = {""};
 		
 		//READ FILE CONTENTS/COUNT VALUES
 		BufferedReader br = new BufferedReader(new FileReader(in));
@@ -46,9 +46,10 @@ public class Analyzer
         	
         	for (String word : words)
         	{
+			word = word.replaceAll("[\\s]", "");
         		if (stringOccurences.containsKey(word))
         			stringOccurences.put(word, stringOccurences.get(word)+1);	//Increments Occurence count for word
-        		else
+        		else if (!word.equals(""))
         			stringOccurences.put(word, 1);									//places a new word in the HashMap
         	}
         }
