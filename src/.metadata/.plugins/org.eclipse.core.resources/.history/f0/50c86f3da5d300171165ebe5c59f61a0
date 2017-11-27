@@ -1,0 +1,14 @@
+import javax.swing.JFrame;
+
+public class TextAnalyzer {
+	
+	AppInterface app;
+	
+	public static void main(String[] args) {
+		
+		app = new AppInterface();
+		app.setTitle("Text Analyzer Pro");
+		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		app.setVisible(true);
+	}
+}

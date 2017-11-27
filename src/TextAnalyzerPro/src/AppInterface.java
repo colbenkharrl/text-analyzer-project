@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,7 +21,7 @@ public class AppInterface extends JFrame {
     private final String SAVE_FILE = "src/Files/Records.txt";
     private File file;
     private JLabel title;
-    private MainPanel mainP;
+    private JPanel mainP;
     private State state = State.MAIN_MENU;
     private HelpType help;
     private RecordList records;
@@ -45,8 +44,8 @@ public class AppInterface extends JFrame {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
     }
 
-    private MainPanel updateCenterPanel() {
-        MainPanel r;
+    private JPanel updateCenterPanel() {
+        JPanel r;
         switch (state) {
             case ANALYZING:
                 //r = new AnalysisPanel();
@@ -65,7 +64,7 @@ public class AppInterface extends JFrame {
                 r = new HistoryPanel();
                 break;
             case RECORD:
-                r = new RecordPanel();
+                r = new RecordPanel(records.records.lastElement());
                 break;
             default:
                 r = new MenuPanel();
@@ -82,14 +81,16 @@ public class AppInterface extends JFrame {
         revalidate();
         repaint();
     }
-
-    public class MainPanel extends JPanel {
-
-        public MainPanel() {
-        }
+    
+    private void updateCenterPanel(Record r) {
+    	remove(mainP);
+        mainP = new RecordPanel(r, true);
+        add(mainP, BorderLayout.CENTER);
+        revalidate();
+        repaint();
     }
 
-    private class MenuPanel extends MainPanel {
+    private class MenuPanel extends JPanel {
         private MenuButton analyzeBtn, historyBtn, helpBtn;
 
         public MenuPanel() {
@@ -129,7 +130,7 @@ public class AppInterface extends JFrame {
         }
     }
 
-    private class HelpPanel extends MainPanel {
+    private class HelpPanel extends JPanel {
         private MenuButton aboutBtn, analyzeHelpBtn, historyHelpBtn, returnBtn;
 
         public HelpPanel() {
@@ -154,7 +155,7 @@ public class AppInterface extends JFrame {
         }
     }
 
-    private class LoadingPanel extends MainPanel {
+    private class LoadingPanel extends JPanel {
 
         private MenuButton returnBtn;
         private String[] values;
@@ -181,40 +182,40 @@ public class AppInterface extends JFrame {
         }
     }
 
-    private class RecordPanel extends MainPanel {
-        JLabel one = new JLabel(), two = new JLabel(), three = new JLabel(), four = new JLabel(), five = new JLabel(), six = new JLabel(), seven = new JLabel(), eight = new JLabel();
-        private JPanel shell = new JPanel();
-        JButton done = new JButton("done");
+    private class RecordPanel extends JPanel {
+        MenuButton done;
+        Record record;
 
-        public RecordPanel() {
+        public RecordPanel(Record r) {
+        	record = r;
+        	createRecord();
+        	done.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
+        }
+        
+        public RecordPanel(Record r, Boolean b) {
+        	record = r;
+        	createRecord();
+        	done.addActionListener(new ButtonListener(ButtonTransition.HISTORY_MENU));
+        }
+        
+        private void createRecord() {
         	
-        	Record r = records.records.get(0);
+        	done = new MenuButton("Done");
         	
-            shell.setLayout(new GridLayout(9, 1));
-            one.setText("File: " + r.getFileName());
-            two.setText("Line count: " + r.getLineCount());
-            three.setText("Blank line count: " + r.getBlankLineCount());
-            four.setText("Space count: " + r.getSpaceCount());
-            five.setText("Word count: " + r.getWordCount());
-            six.setText("Average characters per line: " + r.getAverageCharLine());
-            seven.setText("Average characters per word: " + r.getAverageCharWord());
-            eight.setText("Most common words: " + r.getCommonWordsString());
-            done.addActionListener(new ButtonListener(ButtonTransition.MAIN_MENU));
-            shell.add(one);
-            shell.add(two);
-            shell.add(three);
-            shell.add(four);
-            shell.add(five);
-            shell.add(six);
-            shell.add(seven);
-            shell.add(eight);
-            shell.add(done);
-            add(new JLabel("File statistics: "), BorderLayout.NORTH);
-            add(shell, BorderLayout.CENTER);
+            setLayout(new GridLayout(9, 1));
+        	add(new JLabel("File: " + record.getFileName()));
+        	add(new JLabel("Line count: " + record.getLineCount()));
+        	add(new JLabel("Blank line count: " + record.getBlankLineCount()));
+        	add(new JLabel("Space count: " + record.getSpaceCount()));
+        	add(new JLabel("Word count: " + record.getWordCount()));
+        	add(new JLabel("Average characters per line: " + record.getAverageCharLine()));
+        	add(new JLabel("Average characters per word: " + record.getAverageCharWord()));
+        	add(new JLabel("Most common words: " + record.getCommonWordsString()));
+            add(done);
         }
     }
 
-    private class HistoryPanel extends MainPanel {
+    private class HistoryPanel extends JPanel {
 
         private JList<Record> recordJList;
         private JList<String> statsList;
@@ -254,8 +255,20 @@ public class AppInterface extends JFrame {
                 recordJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 recordJList.setLayoutOrientation(JList.VERTICAL);
                 recordJList.setVisibleRowCount(-1);
+                
+                recordJList.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent evt) {
+                        JList<Record> list = (JList<Record>)evt.getSource();
+                        if (evt.getClickCount() == 2) {
+                            // Double-click detected
+                            int index = list.locationToIndex(evt.getPoint());
+                            updateCenterPanel(records.records.get(index));
+                        }
+                    }
+                });
+                
                 JScrollPane scroll = new JScrollPane(recordJList);
-                add(new JLabel("Select a record to view:"), BorderLayout.NORTH);
+                add(new JLabel("Double-click a record to view:"), BorderLayout.NORTH);
                 add(scroll, BorderLayout.CENTER);
             }
         }
@@ -347,7 +360,7 @@ public class AppInterface extends JFrame {
     }
 
 
-    private class TextPanel extends MainPanel {
+    private class TextPanel extends JPanel {
         MenuButton done;
         JTextArea data;
         JScrollPane scroll;
