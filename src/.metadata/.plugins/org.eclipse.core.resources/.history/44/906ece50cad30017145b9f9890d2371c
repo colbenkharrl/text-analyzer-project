@@ -228,7 +228,8 @@ public class AppInterface extends JFrame {
         private class Deleter implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				records.empty();
-				AppInterface.this.updateCenterPanel(State.HISTORY);
+				revalidate();
+				repaint();
 				JOptionPane.showMessageDialog(AppInterface.this, "History deleted.");
 			}
         }
@@ -273,17 +274,7 @@ public class AppInterface extends JFrame {
             }
             
             private Vector<String> recordToStats(Record r) {
-            	Vector<String> stats = new Vector<String>();
             	
-            	stats.add("Line Count: " + r.getLineCount());
-            	stats.add("Blank Line Count: " + r.getBlankLineCount());
-            	stats.add("Space Count: " + r.getSpaceCount());
-            	stats.add("Word Count: " + r.getWordCount());
-            	stats.add("Average characters per word: " + r.getAverageCharWord());
-            	stats.add("Average characters per line: " + r.getAverageCharLine());
-            	stats.add("Common words: " + r.getCommonWordsString());
-            	
-            	return stats;
             }
         }
     }

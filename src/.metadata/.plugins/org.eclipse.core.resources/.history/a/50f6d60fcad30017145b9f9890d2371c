@@ -125,7 +125,7 @@ public class Analyzer
 	
 	public static Record getAverageStats(Vector<Record> records) {
 		
-		HashMap<String, Integer> commonWords = new HashMap<String, Integer>();
+HashMap<String, Integer> commonWords = new HashMap<String, Integer>();
 		String[] values = new String[4], words = {""}; 
 		int lc = 0, blc = 0, sc = 0, wc = 0, acl = 0, acw = 0, c1 = 0, c2 = 0, c3 = 0, c4 = 0;
 		String slc, sblc, ssc, swc, sacl, sacw, w1 = null, w2 = null, w3 = null, w4 = null;
@@ -235,4 +235,4 @@ public class Analyzer
 		return ret;
 	}
 }
-
+}

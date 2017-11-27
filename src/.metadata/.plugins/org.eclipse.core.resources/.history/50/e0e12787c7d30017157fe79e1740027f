@@ -17,7 +17,7 @@ public class AppInterface extends JFrame {
 
     private final int FRAME_WIDTH, FRAME_HEIGHT;
     private final JFileChooser fc;
-    private final String SAVE_FILE = "src/Files/Records.txt", CLEAR_LINE = "\n\n";
+    private final String SAVE_FILE = "src/Files/Records.txt", CLEAR_LINE = CLEAR_LINE;
     private File file;
     private JLabel title;
     private JPanel mainP;
@@ -228,7 +228,8 @@ public class AppInterface extends JFrame {
         private class Deleter implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				records.empty();
-				AppInterface.this.updateCenterPanel(State.HISTORY);
+				revalidate();
+				repaint();
 				JOptionPane.showMessageDialog(AppInterface.this, "History deleted.");
 			}
         }
@@ -263,27 +264,13 @@ public class AppInterface extends JFrame {
 
             public StatAggregationPanel() {
                 setLayout(new BorderLayout());
-                statsList = new JList<String>(recordToStats(Analyzer.getAverageStats(records.records)));
+                statsList = new JList<String>(Analyzer.getAverageStats(records.records));
                 statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 statsList.setLayoutOrientation(JList.VERTICAL);
                 statsList.setVisibleRowCount(-1);
                 JScrollPane scroll = new JScrollPane(statsList);
                 add(new JLabel("Average statistics: "), BorderLayout.NORTH);
                 add(scroll, BorderLayout.CENTER);
-            }
-            
-            private Vector<String> recordToStats(Record r) {
-            	Vector<String> stats = new Vector<String>();
-            	
-            	stats.add("Line Count: " + r.getLineCount());
-            	stats.add("Blank Line Count: " + r.getBlankLineCount());
-            	stats.add("Space Count: " + r.getSpaceCount());
-            	stats.add("Word Count: " + r.getWordCount());
-            	stats.add("Average characters per word: " + r.getAverageCharWord());
-            	stats.add("Average characters per line: " + r.getAverageCharLine());
-            	stats.add("Common words: " + r.getCommonWordsString());
-            	
-            	return stats;
             }
         }
     }

@@ -228,7 +228,9 @@ public class AppInterface extends JFrame {
         private class Deleter implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				records.empty();
-				AppInterface.this.updateCenterPanel(State.HISTORY);
+				AppInterface.this.remove(mainP);
+				revalidate();
+				repaint();
 				JOptionPane.showMessageDialog(AppInterface.this, "History deleted.");
 			}
         }

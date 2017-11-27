@@ -190,13 +190,13 @@ public class AppInterface extends JFrame {
         }
         
         private String buildStats() {
-        	return 	"File: " + record.getFileName() + CLEAR_LINE +
-        			"Line count: " + record.getLineCount() + CLEAR_LINE + 
-        			"Blank line count: " + record.getBlankLineCount() + CLEAR_LINE + 
-        			"Space count: " + record.getSpaceCount() + CLEAR_LINE + 
-        			"Word count: " + record.getWordCount() + CLEAR_LINE +
-        			"Average characters per line: " + record.getAverageCharLine() + CLEAR_LINE +
-        			"Average characters per word: " + record.getAverageCharWord() + CLEAR_LINE + 
+        	return 	"File: " + record.getFileName() + "\n\n" +
+        			"Line count: " + record.getLineCount() + "\n\n" + 
+        			"Blank line count: " + record.getBlankLineCount() + "\n\n" + 
+        			"Space count: " + record.getSpaceCount() + "\n\n" + 
+        			"Word count: " + record.getWordCount() + "\n\n" +
+        			"Average characters per line: " + record.getAverageCharLine() + "\n\n" +
+        			"Average characters per word: " + record.getAverageCharWord() + "\n\n" + 
         			"Most common words: " + record.getCommonWordsString();			
         }
     }
@@ -228,7 +228,8 @@ public class AppInterface extends JFrame {
         private class Deleter implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				records.empty();
-				AppInterface.this.updateCenterPanel(State.HISTORY);
+				revalidate();
+				repaint();
 				JOptionPane.showMessageDialog(AppInterface.this, "History deleted.");
 			}
         }
@@ -263,27 +264,13 @@ public class AppInterface extends JFrame {
 
             public StatAggregationPanel() {
                 setLayout(new BorderLayout());
-                statsList = new JList<String>(recordToStats(Analyzer.getAverageStats(records.records)));
+                statsList = new JList<String>(Analyzer.getAverageStats(records.records));
                 statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 statsList.setLayoutOrientation(JList.VERTICAL);
                 statsList.setVisibleRowCount(-1);
                 JScrollPane scroll = new JScrollPane(statsList);
                 add(new JLabel("Average statistics: "), BorderLayout.NORTH);
                 add(scroll, BorderLayout.CENTER);
-            }
-            
-            private Vector<String> recordToStats(Record r) {
-            	Vector<String> stats = new Vector<String>();
-            	
-            	stats.add("Line Count: " + r.getLineCount());
-            	stats.add("Blank Line Count: " + r.getBlankLineCount());
-            	stats.add("Space Count: " + r.getSpaceCount());
-            	stats.add("Word Count: " + r.getWordCount());
-            	stats.add("Average characters per word: " + r.getAverageCharWord());
-            	stats.add("Average characters per line: " + r.getAverageCharLine());
-            	stats.add("Common words: " + r.getCommonWordsString());
-            	
-            	return stats;
             }
         }
     }
