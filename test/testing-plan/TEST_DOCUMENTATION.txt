@@ -1,0 +1,65 @@
+TEST DOCUMENTATION
+
+1 General Testing
+	sample0- news article
+		standard characters, numbers, and punctuation.
+		all statistics used
+	*PASS*
+
+	sample1- history textbook chapter
+		standard characters, numbers, and punctuation.
+		all statistics used
+		uninitialized common word array
+	*PASS*
+
+	sample2- courthouse notary
+		non-standard characters, standard characters, numbers, and punctuation.
+		all statistics used
+	*PASS*
+
+	sample3- book excerpt
+		standard characters, and punctuation.
+		all statistics used
+	*PASS*
+	
+	sample4- oxford dictionary
+		standard characters, numbers, and punctuation.
+		bulk text analysis
+	*PASS*
+
+2 Functionality Testing
+	sample5- line count test
+		returns 8
+	*PASS*
+
+	sample6- blank line count test w/ different whitespace chars
+		returns 4
+	*PASS*
+
+	sample7- space count test w/ different whitespace chars
+		returns 8
+	*PASS*
+
+	sample8- word count test defined as strings split by "\\s+"
+		returns 5
+	*PASS*
+
+	sample9- avg char per line
+		returns 3
+	*PASS*
+
+	sample10- avg char per word
+		returns 3
+	*PASS*
+
+	sample11- most common words
+		returns the, of, and, or
+	*PASS*
+
+
+
+
+
+
+
+
