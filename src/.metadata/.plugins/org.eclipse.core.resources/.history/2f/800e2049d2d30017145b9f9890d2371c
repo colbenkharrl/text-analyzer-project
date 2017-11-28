@@ -272,10 +272,7 @@ public class AppInterface extends JFrame {
 	                add(new JLabel("Average statistics: "), BorderLayout.NORTH);
 	                add(scroll, BorderLayout.CENTER);
             	} catch (Exception e) {
-            		System.out.println("Exception caught in app interface");      
-                	JOptionPane.showMessageDialog(AppInterface.this, "An error occured loading your history. Your history will be cleared.");
-                	records.empty();
-                	AppInterface.this.updateCenterPanel(State.HISTORY);
+	            	
 	            }
             }
             

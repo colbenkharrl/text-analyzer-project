@@ -123,7 +123,7 @@ public class Analyzer
 		return r;	
 	}
 	
-	public static Record getAverageStats(Vector<Record> records) throws Exception {
+	public static Record getAverageStats(Vector<Record> records) {
 		
 		HashMap<String, Integer> commonWords = new HashMap<String, Integer>();
 		String[] values = new String[4], words = {""}; 
