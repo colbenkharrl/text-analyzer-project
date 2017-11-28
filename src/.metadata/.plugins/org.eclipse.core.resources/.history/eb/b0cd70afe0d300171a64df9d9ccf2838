@@ -190,14 +190,14 @@ public class AppInterface extends JFrame {
         }
         
         private String buildStats() {
-        	return 	"File:\t\t " + record.getFileName() + CLEAR_LINE +
-        			"Line count:\t\t " + record.getLineCount() + CLEAR_LINE + 
-        			"Blank line count:\t " + record.getBlankLineCount() + CLEAR_LINE + 
-        			"Space count:\t\t " + record.getSpaceCount() + CLEAR_LINE + 
-        			"Word count:\t\t " + record.getWordCount() + CLEAR_LINE +
-        			"Average characters per line:\t " + record.getAverageCharLine() + CLEAR_LINE +
-        			"Average characters per word:\t " + record.getAverageCharWord() + CLEAR_LINE + 
-        			"Most common words:\t " + record.getCommonWordsString();
+        	return 	"File: " + record.getFileName() + CLEAR_LINE +
+        			"Line count: " + record.getLineCount() + CLEAR_LINE + 
+        			"Blank line count: " + record.getBlankLineCount() + CLEAR_LINE + 
+        			"Space count: " + record.getSpaceCount() + CLEAR_LINE + 
+        			"Word count: " + record.getWordCount() + CLEAR_LINE +
+        			"Average characters per line: " + record.getAverageCharLine() + CLEAR_LINE +
+        			"Average characters per word: " + record.getAverageCharWord() + CLEAR_LINE + 
+        			"Most common words: " + record.getCommonWordsString();			
         }
     }
 
@@ -272,7 +272,6 @@ public class AppInterface extends JFrame {
 	                add(new JLabel("Average statistics: "), BorderLayout.NORTH);
 	                add(scroll, BorderLayout.CENTER);
             	} catch (Exception e) {
-            		e.printStackTrace();
             		System.out.println("Exception caught in app interface");      
                 	JOptionPane.showMessageDialog(AppInterface.this, "An error occured loading your history. Your history will be cleared.");
                 	records.empty();
@@ -283,13 +282,13 @@ public class AppInterface extends JFrame {
             private Vector<String> recordToStats(Record r) {
             	Vector<String> stats = new Vector<String>();
             	
-            	stats.add("Line Count:\t\t " + r.getLineCount());
-            	stats.add("Blank Line Count:\t " + r.getBlankLineCount());
-            	stats.add("Space Count:\t\t " + r.getSpaceCount());
-            	stats.add("Word Count:\t\t " + r.getWordCount());
-            	stats.add("Average characters per word:\t " + r.getAverageCharWord());
-            	stats.add("Average characters per line:\t " + r.getAverageCharLine());
-            	stats.add("Common words:\t " + r.getCommonWordsString());
+            	stats.add("Line Count: " + r.getLineCount());
+            	stats.add("Blank Line Count: " + r.getBlankLineCount());
+            	stats.add("Space Count: " + r.getSpaceCount());
+            	stats.add("Word Count: " + r.getWordCount());
+            	stats.add("Average characters per word: " + r.getAverageCharWord());
+            	stats.add("Average characters per line: " + r.getAverageCharLine());
+            	stats.add("Common words: " + r.getCommonWordsString());
             	
             	return stats;
             }

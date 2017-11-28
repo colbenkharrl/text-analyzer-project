@@ -148,12 +148,10 @@ public class Analyzer
 			words = r.getCommonWords();
 			for (String word : words)
         	{
-				if (word != null) {
-					if (commonWords.containsKey(word))
-	        			commonWords.put(word, commonWords.get(word)+1);	
-	        		else if(!word.equals(""))
-	        			commonWords.put(word, 1);
-				}									
+        		if (commonWords.containsKey(word))
+        			commonWords.put(word, commonWords.get(word)+1);	
+        		else if(!word.equals(""))
+        			commonWords.put(word, 1);									
         	}
 			i++;
 		}

@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="CLEAR_LINE" key="selection"/>
+		<item value="HELP_TEXT_MENU" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="HELP_TEXT_MENU"/>
 			<item value="&quot;\n\n&quot;"/>
 			<item value="deleter"/>
 			<item value="new LoadingPanel"/>
@@ -15,7 +16,6 @@
 			<item value="file"/>
 			<item value="JtextArea"/>
 			<item value="Select a"/>
-			<item value="JList"/>
 		</list>
 		<list key="replacehistory">
 			<item value="CLEAR_LINE"/>

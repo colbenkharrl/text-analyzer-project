@@ -45,7 +45,6 @@ public class Record implements Serializable {
 	}
 	
 	public String[] getCommonWords() {
-		System.out.println(commonWords);
 		return commonWords;
 	}
 	

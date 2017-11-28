@@ -197,7 +197,7 @@ public class AppInterface extends JFrame {
         			"Word count:\t\t " + record.getWordCount() + CLEAR_LINE +
         			"Average characters per line:\t " + record.getAverageCharLine() + CLEAR_LINE +
         			"Average characters per word:\t " + record.getAverageCharWord() + CLEAR_LINE + 
-        			"Most common words:\t " + record.getCommonWordsString();
+        			"Most common words:\t " + record.getCommonWordsString();			
         }
     }
 
@@ -272,7 +272,6 @@ public class AppInterface extends JFrame {
 	                add(new JLabel("Average statistics: "), BorderLayout.NORTH);
 	                add(scroll, BorderLayout.CENTER);
             	} catch (Exception e) {
-            		e.printStackTrace();
             		System.out.println("Exception caught in app interface");      
                 	JOptionPane.showMessageDialog(AppInterface.this, "An error occured loading your history. Your history will be cleared.");
                 	records.empty();

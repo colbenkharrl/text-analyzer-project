@@ -197,14 +197,13 @@ public class AppInterface extends JFrame {
         			"Word count:\t\t " + record.getWordCount() + CLEAR_LINE +
         			"Average characters per line:\t " + record.getAverageCharLine() + CLEAR_LINE +
         			"Average characters per word:\t " + record.getAverageCharWord() + CLEAR_LINE + 
-        			"Most common words:\t " + record.getCommonWordsString();
+        			"Most common words:\t " + record.getCommonWordsString();			
         }
     }
 
     private class HistoryPanel extends JPanel {
 
         private JList<Record> recordJList;
-        private JList<String> statsList;
         private JPanel midPanel, btnPanel;
         private MenuButton deleteHistory, menu;
 
@@ -260,19 +259,18 @@ public class AppInterface extends JFrame {
         }
 
         private class StatAggregationPanel extends JPanel {
+        	
+        	private JTextArea text;
+        	private JScrollPane scroll;
 
             public StatAggregationPanel() {
             	try {
 	                setLayout(new BorderLayout());
-	                statsList = new JList<String>(recordToStats(Analyzer.getAverageStats(records.records)));
-	                statsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-	                statsList.setLayoutOrientation(JList.VERTICAL);
-	                statsList.setVisibleRowCount(-1);
+	                text = new JTextArea(recordToStats(Analyzer.getAverageStats(records.records)));
 	                JScrollPane scroll = new JScrollPane(statsList);
 	                add(new JLabel("Average statistics: "), BorderLayout.NORTH);
 	                add(scroll, BorderLayout.CENTER);
             	} catch (Exception e) {
-            		e.printStackTrace();
             		System.out.println("Exception caught in app interface");      
                 	JOptionPane.showMessageDialog(AppInterface.this, "An error occured loading your history. Your history will be cleared.");
                 	records.empty();

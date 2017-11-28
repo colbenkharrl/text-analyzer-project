@@ -197,7 +197,7 @@ public class AppInterface extends JFrame {
         			"Word count:\t\t " + record.getWordCount() + CLEAR_LINE +
         			"Average characters per line:\t " + record.getAverageCharLine() + CLEAR_LINE +
         			"Average characters per word:\t " + record.getAverageCharWord() + CLEAR_LINE + 
-        			"Most common words:\t " + record.getCommonWordsString();
+        			"Most common words:\t " + record.getCommonWordsString();			
         }
     }
 
