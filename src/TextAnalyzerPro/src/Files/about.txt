@@ -10,4 +10,4 @@ Upon selection the files statistics will be reported on screen,
 and this information will be recorded in the history tab
 accessible through the main menu. 
 
-Written and coded by Colben Kharrl, Kevin Lough, and Abdul Jassam.
+Written and coded by Colben Kharrl, Kevin Lough, and Abdul Jasam.
